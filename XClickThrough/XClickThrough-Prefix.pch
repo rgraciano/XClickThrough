@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'XClickThrough' target in the 'XClickThrough' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

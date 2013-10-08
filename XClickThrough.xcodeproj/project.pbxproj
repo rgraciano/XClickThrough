@@ -1,0 +1,284 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		94746FA917EFD45A00395DFF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94746FA817EFD45A00395DFF /* Cocoa.framework */; };
+		94746FB517EFD45A00395DFF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94746FB417EFD45A00395DFF /* main.m */; };
+		94746FBC17EFD45A00395DFF /* XCTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94746FBB17EFD45A00395DFF /* XCTAppDelegate.m */; };
+		94746FBF17EFD45A00395DFF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94746FBD17EFD45A00395DFF /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		94746FA417EFD45A00395DFF /* XClickThrough.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XClickThrough.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94746FA817EFD45A00395DFF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		94746FAB17EFD45A00395DFF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		94746FAC17EFD45A00395DFF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		94746FAD17EFD45A00395DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		94746FB017EFD45A00395DFF /* XClickThrough-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XClickThrough-Info.plist"; sourceTree = "<group>"; };
+		94746FB417EFD45A00395DFF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		94746FB617EFD45A00395DFF /* XClickThrough-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XClickThrough-Prefix.pch"; sourceTree = "<group>"; };
+		94746FBA17EFD45A00395DFF /* XCTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCTAppDelegate.h; sourceTree = "<group>"; };
+		94746FBB17EFD45A00395DFF /* XCTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCTAppDelegate.m; sourceTree = "<group>"; };
+		94746FBE17EFD45A00395DFF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94746FA117EFD45A00395DFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94746FA917EFD45A00395DFF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		94746F9917EFD45A00395DFF = {
+			isa = PBXGroup;
+			children = (
+				94746FAE17EFD45A00395DFF /* XClickThrough */,
+				94746FA717EFD45A00395DFF /* Frameworks */,
+				94746FA517EFD45A00395DFF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		94746FA517EFD45A00395DFF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94746FA417EFD45A00395DFF /* XClickThrough.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94746FA717EFD45A00395DFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94746FA817EFD45A00395DFF /* Cocoa.framework */,
+				94746FAA17EFD45A00395DFF /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94746FAA17EFD45A00395DFF /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94746FAB17EFD45A00395DFF /* AppKit.framework */,
+				94746FAC17EFD45A00395DFF /* CoreData.framework */,
+				94746FAD17EFD45A00395DFF /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		94746FAE17EFD45A00395DFF /* XClickThrough */ = {
+			isa = PBXGroup;
+			children = (
+				94746FBA17EFD45A00395DFF /* XCTAppDelegate.h */,
+				94746FBB17EFD45A00395DFF /* XCTAppDelegate.m */,
+				94746FBD17EFD45A00395DFF /* MainMenu.xib */,
+				94746FAF17EFD45A00395DFF /* Supporting Files */,
+			);
+			path = XClickThrough;
+			sourceTree = "<group>";
+		};
+		94746FAF17EFD45A00395DFF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				94746FB017EFD45A00395DFF /* XClickThrough-Info.plist */,
+				94746FB417EFD45A00395DFF /* main.m */,
+				94746FB617EFD45A00395DFF /* XClickThrough-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		94746FA317EFD45A00395DFF /* XClickThrough */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94746FC217EFD45A00395DFF /* Build configuration list for PBXNativeTarget "XClickThrough" */;
+			buildPhases = (
+				94746FA017EFD45A00395DFF /* Sources */,
+				94746FA117EFD45A00395DFF /* Frameworks */,
+				94746FA217EFD45A00395DFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XClickThrough;
+			productName = XClickThrough;
+			productReference = 94746FA417EFD45A00395DFF /* XClickThrough.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		94746F9B17EFD45A00395DFF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
+			buildConfigurationList = 94746F9E17EFD45A00395DFF /* Build configuration list for PBXProject "XClickThrough" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 94746F9917EFD45A00395DFF;
+			productRefGroup = 94746FA517EFD45A00395DFF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				94746FA317EFD45A00395DFF /* XClickThrough */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94746FA217EFD45A00395DFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94746FBF17EFD45A00395DFF /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		94746FA017EFD45A00395DFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94746FB517EFD45A00395DFF /* main.m in Sources */,
+				94746FBC17EFD45A00395DFF /* XCTAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		94746FBD17EFD45A00395DFF /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94746FBE17EFD45A00395DFF /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		94746FC017EFD45A00395DFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		94746FC117EFD45A00395DFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		94746FC317EFD45A00395DFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XClickThrough/XClickThrough-Prefix.pch";
+				INFOPLIST_FILE = "XClickThrough/XClickThrough-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		94746FC417EFD45A00395DFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XClickThrough/XClickThrough-Prefix.pch";
+				INFOPLIST_FILE = "XClickThrough/XClickThrough-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		94746F9E17EFD45A00395DFF /* Build configuration list for PBXProject "XClickThrough" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94746FC017EFD45A00395DFF /* Debug */,
+				94746FC117EFD45A00395DFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94746FC217EFD45A00395DFF /* Build configuration list for PBXNativeTarget "XClickThrough" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94746FC317EFD45A00395DFF /* Debug */,
+				94746FC417EFD45A00395DFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 94746F9B17EFD45A00395DFF /* Project object */;
+}
