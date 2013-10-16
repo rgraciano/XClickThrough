@@ -21,6 +21,7 @@ const int SLEEP_INCREMENT = 10000; // 0.01s
                                            message,
                                            @"Open Preferences",
                                            @"Exit XClickThrough",
+                                           @"Try Again",
                                            NULL
                                            );
         
@@ -29,8 +30,11 @@ const int SLEEP_INCREMENT = 10000; // 0.01s
                 [[NSWorkspace sharedWorkspace] openFile:@"/System/Library/PreferencePanes/UniversalAccessPref.prefPane"];
                 break;
                 
+            case NSAlertAlternateReturn:
+                [NSApp terminate:self];
+                
             default:
-                [NSApp terminate:self]; 
+                continue;
         }        
     }
 }
