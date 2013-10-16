@@ -6,7 +6,7 @@
 
 @synthesize window = _window;
 
-CGEventTapLocation LOCATION = kCGSessionEventTap;
+CGEventTapLocation LOCATION = kCGHIDEventTap;
 CGEventType BTN_EVENT = kCGEventLeftMouseDown;
 
 const int SLEEP_LIMIT = 500000; // 0.5s
@@ -95,7 +95,7 @@ CGEventRef mouseTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     bool setFrontMost = NO;
     int slept = 0;
     
-    do {        
+    for (int slept = 0; slept < SLEEP_LIMIT; slept += SLEEP_INCREMENT) { // Cap the amount of time we wait for the app to go foreground
         // Some things can't be front most, like icons on the dock
         if (AXUIElementCopyAttributeValue(app, CFSTR("AXFrontmost"), &boolVal)) {
             break;
@@ -115,11 +115,11 @@ CGEventRef mouseTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
         
         if (boolVal != NULL) {
             CFRelease(boolVal);
+            boolVal = NULL;
         }
         
         usleep(SLEEP_INCREMENT);
-        slept += SLEEP_INCREMENT;
-    } while(slept < SLEEP_LIMIT); // Cap the amount of time we wait for the app to go foreground
+    }
     
     if (boolVal != NULL) {
         CFRelease(boolVal);
