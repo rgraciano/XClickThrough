@@ -8,10 +8,10 @@ have to double-click it to make something happen.
 
 XClickThrough skirts around this problem by:
 
-1) Capturing all mouse clicks
-2) Finding the window being clicked
-3) Setting that window as "front most" via the Accessibility API
-4) Generating another click on the same spot
+1. Capturing all mouse clicks
+2. Finding the window being clicked
+3. Setting that window as "front most" via the Accessibility API
+4. Generating another click on the same spot
 
 This means you can have a browser on one window, and an email client in the other, and you don't have to constantly
 be double-clicking to get stuff done.
