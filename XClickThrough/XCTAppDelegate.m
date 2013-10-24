@@ -67,18 +67,20 @@ CGEventRef mouseTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     if (sysWideRef == NULL) {
         return event;
     }
-    CFBridgingRelease(sysWideRef);
     
     AXUIElementRef hitPoint = NULL; // Reference to the AX element that was hit
     
     // Get the AX element at the hitPoint position
     if (AXUIElementCopyElementAtPosition(sysWideRef, pt.x, pt.y, &hitPoint)) {
+        CFRelease(sysWideRef);
+        
         if (hitPoint != NULL) {
             CFRelease(hitPoint);
         }
         
         return event;
     }
+    CFRelease(sysWideRef);
     
     // Find the application that the hitPoint belongs to
     CFRetain(hitPoint);
