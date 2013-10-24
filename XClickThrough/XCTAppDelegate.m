@@ -89,7 +89,6 @@ CGEventRef mouseTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     if (app == NULL) {
         return event;
     }
-    CFBridgingRelease(app);
     
     CFTypeRef boolVal = NULL;
     bool setFrontMost = NO;
@@ -120,6 +119,7 @@ CGEventRef mouseTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
         
         usleep(SLEEP_INCREMENT);
     }
+    CFRelease(app);
     
     if (boolVal != NULL) {
         CFRelease(boolVal);
