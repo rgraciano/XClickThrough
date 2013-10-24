@@ -16,6 +16,5 @@ XClickThrough skirts around this problem by:
 This means you can have a browser on one window, and an email client in the other, and you don't have to constantly
 be double-clicking to get stuff done.
 
-Beware that I wrote this entirely for myself, so I've only been testing it on my own machine (10.8.5). No guarantees it'll
-work anywhere else, but it uses the older Carbon APIs for event taps and accessibility, so hopefully the backwards
-compatibility goes pretty deep.
+XClickThrough works fine out of the box on 10.8.5. On Mavericks, you'll also need to give it permission in the new
+[Accessibility Security & Privacy settings](http://www.cultofmac.com/236709/enable-access-for-assistive-devices-in-mavericks-os-x-tips/).
