@@ -84,51 +84,38 @@ CGEventRef mouseTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     
     // Find the application that the hitPoint belongs to
     CFRetain(hitPoint);
-    AXUIElementRef app = findApplicationFromElement(hitPoint);
-    CFRelease(hitPoint);
+    AXUIElementRef app = [XCTAppDelegate findParentElementByRole:CFSTR("AXApplication") fromElement:hitPoint];
 
     // If we can't find the app element, then this is something we shouldn't capture
     if (app == NULL) {
+        CFRelease(hitPoint);
         return event;
     }
     
-    CFTypeRef boolVal = NULL;
-    bool setFrontMost = NO;
-    int slept = 0;
-    
-    for (int slept = 0; slept < SLEEP_LIMIT; slept += SLEEP_INCREMENT) { // Cap the amount of time we wait for the app to go foreground
-        // Some things can't be front most, like icons on the dock
-        if (AXUIElementCopyAttributeValue(app, CFSTR("AXFrontmost"), &boolVal)) {
-            break;
-        }
-
-        // If the desired app is already front most, pass this click on as normal
-        if (CFBooleanGetValue(boolVal)) {
-            break;
-        }
-    
-        if (!setFrontMost) {
-            if (AXUIElementSetAttributeValue(app, CFSTR("AXFrontmost"), kCFBooleanTrue)) {
-                break;
-            }
-            setFrontMost = YES;
-        }
-        
-        if (boolVal != NULL) {
-            CFRelease(boolVal);
-            boolVal = NULL;
-        }
-        
-        usleep(SLEEP_INCREMENT);
+    // Now find the window that the hitPoint belongs to
+    AXUIElementRef window;
+    if (AXUIElementCopyAttributeValue(hitPoint, CFSTR("AXWindow"), (CFTypeRef *)&window) || window == NULL) {
+        CFRelease(hitPoint);
+        CFRelease(app);
+        return event;
     }
+    CFRelease(hitPoint);
+    
+    BOOL changedAppFocus = [XCTAppDelegate checkAttributeUntilChanged:CFSTR("AXFrontmost")
+                                                   changeAttrOrAction:CFSTR("AXFrontmost")
+                                                           withAction:NO
+                                                          fromElement:app];
     CFRelease(app);
     
-    if (boolVal != NULL) {
-        CFRelease(boolVal);
-    }
-    
-    // If we errored out or timed out, just return the original event (basically do nothing)
-    if (!setFrontMost || slept >= SLEEP_LIMIT) {
+    BOOL changedWindowFocus = [XCTAppDelegate checkAttributeUntilChanged:CFSTR("AXMain")
+                                                      changeAttrOrAction:CFSTR("AXRaise")
+                                                              withAction:YES
+                                                             fromElement:window];
+    CFRelease(window);
+
+
+    // If we changed neither the app focus nor the window focus, then do nothing
+    if (!changedAppFocus && !changedWindowFocus) {
         return event;
     }
     else {
@@ -152,9 +139,61 @@ CGEventRef mouseTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     }
 }
 
-AXUIElementRef findApplicationFromElement(AXUIElementRef elementRef) {
++ (BOOL) checkAttributeUntilChanged:(CFStringRef)checkAttribute changeAttrOrAction:(CFStringRef)attrOrAction withAction:(BOOL)isAction fromElement:(AXUIElementRef)element {
+     
+    CFTypeRef boolVal = NULL;
+    bool didSomething = NO;
+    int slept;
     
-    AXUIElementRef loopCurrent = elementRef;
+    for (slept = 0; slept < SLEEP_LIMIT; slept += SLEEP_INCREMENT) { // Cap the amount of time we wait for the action to complete
+        // Some things can't be front most, like icons on the dock
+        if (AXUIElementCopyAttributeValue(element, checkAttribute, &boolVal)) {
+            break;
+        }
+
+        // If the desired app is already front most, pass this click on as normal
+        if (CFBooleanGetValue(boolVal)) {
+            break;
+        }
+
+        if (!didSomething) {
+            if (isAction) {
+                if(AXUIElementPerformAction(element, attrOrAction)) {
+                    break;
+                }
+            }
+            else {
+                if (AXUIElementSetAttributeValue(element, attrOrAction, kCFBooleanTrue)) {
+                    break;
+                }
+            }
+    
+            didSomething = YES;
+        }
+
+        if (boolVal != NULL) {
+            CFRelease(boolVal);
+            boolVal = NULL;
+        }
+
+        usleep(SLEEP_INCREMENT);
+    }
+
+    if (boolVal != NULL) {
+        CFRelease(boolVal);
+    }
+    
+    if (slept >= SLEEP_LIMIT) {
+        return NO;
+    }
+    else {
+        return didSomething;
+    }
+}
+
++ (AXUIElementRef) findParentElementByRole:(CFStringRef)roleToFind fromElement:(AXUIElementRef)startElement {
+        
+    AXUIElementRef loopCurrent = startElement;
     AXUIElementRef parent = NULL;
     
     CFStringRef role = NULL;
@@ -164,16 +203,16 @@ AXUIElementRef findApplicationFromElement(AXUIElementRef elementRef) {
         // Since something wrong in this loop could take down the input system on OS X, we have this safety valve.
         // In 10.8, an infinite loop here still let me CTRL-CMD-ESC to force quit. In 10.7 I couldn't get any key sequence
         // to break through.
-
+        
         
         if (!AXUIElementCopyAttributeValue(loopCurrent, CFSTR("AXRole"), (CFTypeRef *)&role)) {
             // Found the AXApplication element, which is what we will raise later
-            if (!CFStringCompare(role, CFSTR("AXApplication"), 0)) {
+            if (!CFStringCompare(role, roleToFind, 0)) {
                 CFRelease(role);
                 return loopCurrent;
             }
         }
-    
+        
         CFRelease(role);
         
         if (AXUIElementCopyAttributeValue(loopCurrent, CFSTR("AXParent"), (CFTypeRef *)&parent)) {
@@ -188,8 +227,7 @@ AXUIElementRef findApplicationFromElement(AXUIElementRef elementRef) {
     CFRelease(loopCurrent);
     return NULL;
 }
-
-
+    
 @end
 
 

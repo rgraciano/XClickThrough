@@ -13,6 +13,5 @@
 @property (assign) IBOutlet NSWindow *window;
 
 CGEventRef mouseTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void* ref);
-AXUIElementRef findApplicationFromElement(AXUIElementRef elementRef);    
 
 @end
