@@ -101,18 +101,28 @@ CGEventRef mouseTapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     }
     CFRelease(hitPoint);
     
+    // Make the hitPoint's window frontMost
     BOOL changedAppFocus = [XCTAppDelegate checkAttributeUntilChanged:CFSTR("AXFrontmost")
                                                    changeAttrOrAction:CFSTR("AXFrontmost")
                                                            withAction:NO
                                                           fromElement:app];
-    CFRelease(app);
+    BOOL changedWindowFocus = NO;
+
+    // Now check that the window we clicked is the 'main window', making sure
+    // first that a 'main window' is possible in this application.
+    CFStringRef axMainWindowVal = NULL;
+    AXUIElementCopyAttributeValue(app, CFSTR("AXMainWindow"), (CFTypeRef *)&axMainWindowVal);
     
-    BOOL changedWindowFocus = [XCTAppDelegate checkAttributeUntilChanged:CFSTR("AXMain")
+    // If the app has a 'main window', make sure the one we clicked is it
+    if (axMainWindowVal != NULL) {
+        changedWindowFocus = [XCTAppDelegate checkAttributeUntilChanged:CFSTR("AXMain")
                                                       changeAttrOrAction:CFSTR("AXRaise")
                                                               withAction:YES
                                                              fromElement:window];
-    CFRelease(window);
+    }
 
+    CFRelease(app);
+    CFRelease(window);
 
     // If we changed neither the app focus nor the window focus, then do nothing
     if (!changedAppFocus && !changedWindowFocus) {
